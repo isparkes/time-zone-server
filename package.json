@@ -1,0 +1,27 @@
+{
+  "name": "time-zone-server",
+  "version": "1.0.0",
+  "description": "Provides local time and time zone information via REST, given a TZ like input",
+  "main": "time-zone-service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isparkes/time-zone-server.git"
+  },
+  "keywords": [
+    "Arduino",
+    "Nixie",
+    "Clock",
+    "Time",
+    "Zone",
+    "Service"
+  ],
+  "author": "Ian Sparkes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isparkes/time-zone-server/issues"
+  },
+  "homepage": "https://github.com/isparkes/time-zone-server#readme"
+}
