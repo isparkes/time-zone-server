@@ -15,7 +15,6 @@ not currently supported.
 
 Gets the local time right now for the given TZ style input area and city n the format "yyyymmdd HHMMSS"
 
-Example:
     curl http://localhost:3000/GetTime/Europe/Berlin
     2016,04,18,15,56,08
 
@@ -24,7 +23,6 @@ Example:
 
 Gets the short time zone for the given area/city, e.g.  CET, CEST, EST
 
-Example:
     curl http://localhost:3000/GetTimeZone/Europe/Berlin
     CEST
 
@@ -32,7 +30,6 @@ Example:
 
 Gets the current offset to GMT for the given area/city, e.g. GMT+0200
 
-Example:
     curl http://localhost:3000/GetTimeOffset/Europe/Berlin
     GMT+0200
 
@@ -40,7 +37,6 @@ Example:
 
 Returns the internal date representation, intended for debugging only
 
-Example: 
     curl http://localhost:3000/GetTimeRaw/Europe/Berlin
     Tue Apr 19 2016 09:47:30 GMT+0200 (CEST)
 
@@ -49,9 +45,11 @@ Example:
 Install Node.js, there are a lot of references about how to do this. Google it.
 
 Get/build the dependencies
+
     npm install
 
 Execute
+
     node time-zone-service.js
 
 #Running on Cloud Foundry
