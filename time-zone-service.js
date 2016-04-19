@@ -1,27 +1,26 @@
 var express = require('express');
-var dateFormat = require('dateformat');
 
 var app = express();
 
-var port=3000;
+var port = process.env.PORT || 3000;
 
 var timeZone = function(area,city) {
   if (area==null) {
-    return new Error("Continent can't be empty")
+    return new Error("Continent can't be empty");
   }
-  return area+'/'+city
+  return area+'/'+city;
 }
 
 // Call for getting the adjusted time back
 app.get('/getTime/:area/:city', function(req, res) {
-  var time = require('time')
-  var now = new time.Date()
-  var tzone = timeZone(req.params.area,req.params.city)
+  var time = require('time');
+  var now = new time.Date();
+  var tzone = timeZone(req.params.area,req.params.city);
   if (tzone instanceof Error) {
-    res.send(etzone)
+    res.send(etzone);
   } else {
-    now.setTimezone(tzone)
-    var resultTime=dateFormat(now,"yyyymmdd HHMMss");
+    now.setTimezone(tzone);
+    var resultTime=now.getFullYear()+","+(now.getMonth()+1)+","+now.getDate()+","+now.getHours()+","+now.getMinutes()+","+now.getSeconds();
     res.send(resultTime);
   }
 });
@@ -51,6 +50,20 @@ app.get('/getTimeOffset/:area/:city', function(req, res) {
     now.setTimezone(tzone)
     var resultTimeZone=now.toString().split(" ")[5]
     res.send(resultTimeZone);
+  }
+});
+
+// Call for getting the adjusted time back
+app.get('/getTimeRaw/:area/:city', function(req, res) {
+  var time = require('time')
+  var now = new time.Date()
+  var tzone = timeZone(req.params.area,req.params.city)
+  if (tzone instanceof Error) {
+    res.send(etzone)
+  } else {
+    now.setTimezone(tzone)
+    var resultTime=now.toString();
+    res.send(resultTime);
   }
 });
 
