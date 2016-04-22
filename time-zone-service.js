@@ -1,6 +1,6 @@
 var express = require('express');
-
 var app = express();
+var time = require('time');
 
 var port = process.env.PORT || 3000;
 
@@ -20,9 +20,10 @@ var timeZone = function(area,location,city) {
 
 // Call for getting the adjusted time back 2 part location
 app.get('/getTime/:area/:location', function(req, res) {
-  var time = require('time');
-  var now = new time.Date();
-  var tzone = timeZone(req.params.area,req.params.location);
+  "use strict";
+  let time = require('time');
+  let now = new time.Date();
+  let tzone = timeZone(req.params.area,req.params.location);
   if (tzone instanceof Error) {
     res.send(etzone);
   } else {
@@ -34,9 +35,9 @@ app.get('/getTime/:area/:location', function(req, res) {
 
 // Call for getting the adjusted time back 3 part location
 app.get('/getTime/:area/:location/:city', function(req, res) {
-  var time = require('time');
-  var now = new time.Date();
-  var tzone = timeZone(req.params.area,req.params.location,req.params.city);
+  "use strict";
+  let now = new time.Date();
+  let tzone = timeZone(req.params.area,req.params.location,req.params.city);
   if (tzone instanceof Error) {
     res.send(etzone);
   } else {
@@ -48,9 +49,9 @@ app.get('/getTime/:area/:location/:city', function(req, res) {
 
 // call for getting the time zone 2 part location
 app.get('/getTimeZone/:area/:location', function(req, res) {
-  var time = require('time')
-  var now = new time.Date()
-  var tzone = timeZone(req.params.area,req.params.location)
+  "use strict";
+  let now = new time.Date()
+  let tzone = timeZone(req.params.area,req.params.location)
   if (tzone instanceof Error) {
     res.send(etzone)
   } else {
@@ -62,9 +63,9 @@ app.get('/getTimeZone/:area/:location', function(req, res) {
 
 // call for getting the time zone 3 part location
 app.get('/getTimeZone/:area/:location/:city', function(req, res) {
-  var time = require('time')
-  var now = new time.Date()
-  var tzone = timeZone(req.params.area,req.params.location,req.params.city)
+  "use strict";
+  let now = new time.Date()
+  let tzone = timeZone(req.params.area,req.params.location,req.params.city)
   if (tzone instanceof Error) {
     res.send(etzone)
   } else {
@@ -76,9 +77,9 @@ app.get('/getTimeZone/:area/:location/:city', function(req, res) {
 
 // call for getting the time zone 2 part location
 app.get('/getTimeOffset/:area/:location', function(req, res) {
-  var time = require('time')
-  var now = new time.Date()
-  var tzone = timeZone(req.params.area,req.params.location)
+  "use strict";
+  let now = new time.Date()
+  let tzone = timeZone(req.params.area,req.params.location)
   if (tzone instanceof Error) {
     res.send(etzone)
   } else {
@@ -90,9 +91,9 @@ app.get('/getTimeOffset/:area/:location', function(req, res) {
 
 // call for getting the time zone 3 part location
 app.get('/getTimeOffset/:area/:location/:city', function(req, res) {
-  var time = require('time')
-  var now = new time.Date()
-  var tzone = timeZone(req.params.area,req.params.location,req.params.city)
+  "use strict";
+  let now = new time.Date()
+  let tzone = timeZone(req.params.area,req.params.location,req.params.city)
   if (tzone instanceof Error) {
     res.send(etzone)
   } else {
@@ -104,9 +105,9 @@ app.get('/getTimeOffset/:area/:location/:city', function(req, res) {
 
 // Call for getting the adjusted time back 2 part location
 app.get('/getTimeRaw/:area/:location', function(req, res) {
-  var time = require('time')
-  var now = new time.Date()
-  var tzone = timeZone(req.params.area,req.params.location)
+  "use strict";
+  let now = new time.Date()
+  let tzone = timeZone(req.params.area,req.params.location)
   if (tzone instanceof Error) {
     res.send(etzone)
   } else {
@@ -118,9 +119,9 @@ app.get('/getTimeRaw/:area/:location', function(req, res) {
 
 // Call for getting the adjusted time back 2 part location
 app.get('/getTimeRaw/:area/:location/:city', function(req, res) {
-  var time = require('time')
-  var now = new time.Date()
-  var tzone = timeZone(req.params.area,req.params.location,req.params.city)
+  "use strict";
+  let now = new time.Date()
+  let tzone = timeZone(req.params.area,req.params.location,req.params.city)
   if (tzone instanceof Error) {
     res.send(etzone)
   } else {

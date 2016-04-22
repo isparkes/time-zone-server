@@ -27,5 +27,9 @@
   "dependencies": {
     "express": "^4.13.4",
     "time": "^0.11.4"
+  },
+  "engines": {
+    "node": "4.4.0",
+    "npm": "2.14.20"
   }
 }
