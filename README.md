@@ -5,13 +5,12 @@ as input, e.g. 'Europe/Zurich'.
 
 A full list of supported time zones is available at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
-Note that only "Area/Location" requests are supported. Locations with compund names such as "America/Indiana/Knox" are
-not currently supported.
 
 
 #API:
 
-##GET /getTime/area/city
+##GET /getTime/area/location
+##GET /getTime/area/location/city
 
 Gets the local time right now for the given TZ style input area and city n the format "yyyymmdd HHMMSS"
 
@@ -19,21 +18,26 @@ Gets the local time right now for the given TZ style input area and city n the f
     2016,04,18,15,56,08
 
 
-##GET /getTimeZone/area/city
+##GET /getTimeZone/area/location
+##GET /getTimeZone/area/location/city
 
 Gets the short time zone for the given area/city, e.g.  CET, CEST, EST
 
     curl http://localhost:3000/GetTimeZone/Europe/Berlin
     CEST
 
-##GET /getTimeOffset/area/city
+
+##GET /getTimeOffset/area/location
+##GET /getTimeOffset/area/location/city
 
 Gets the current offset to GMT for the given area/city, e.g. GMT+0200
 
     curl http://localhost:3000/GetTimeOffset/Europe/Berlin
     GMT+0200
 
-##GET /getTimeRaw/area/city
+
+##GET /getTimeRaw/area/location
+##GET /getTimeRaw/area/location/city
 
 Returns the internal date representation, intended for debugging only
 

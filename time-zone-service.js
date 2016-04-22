@@ -4,18 +4,25 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
-var timeZone = function(area,city) {
+var timeZone = function(area,location,city) {
   if (area==null) {
-    return new Error("Continent can't be empty");
+    return new Error("Area can't be empty");
   }
-  return area+'/'+city;
+  if (location==null) {
+    return new Error("Location can't be empty");
+  }
+  if (city==null) {
+    return area+'/'+location;
+  } else {
+    return area+'/'+location+'/'+city;
+  }
 }
 
-// Call for getting the adjusted time back
-app.get('/getTime/:area/:city', function(req, res) {
+// Call for getting the adjusted time back 2 part location
+app.get('/getTime/:area/:location', function(req, res) {
   var time = require('time');
   var now = new time.Date();
-  var tzone = timeZone(req.params.area,req.params.city);
+  var tzone = timeZone(req.params.area,req.params.location);
   if (tzone instanceof Error) {
     res.send(etzone);
   } else {
@@ -25,11 +32,25 @@ app.get('/getTime/:area/:city', function(req, res) {
   }
 });
 
-// call for getting the time zone
-app.get('/getTimeZone/:area/:city', function(req, res) {
+// Call for getting the adjusted time back 3 part location
+app.get('/getTime/:area/:location/:city', function(req, res) {
+  var time = require('time');
+  var now = new time.Date();
+  var tzone = timeZone(req.params.area,req.params.location,req.params.city);
+  if (tzone instanceof Error) {
+    res.send(etzone);
+  } else {
+    now.setTimezone(tzone);
+    var resultTime=now.getFullYear()+","+(now.getMonth()+1)+","+now.getDate()+","+now.getHours()+","+now.getMinutes()+","+now.getSeconds();
+    res.send(resultTime);
+  }
+});
+
+// call for getting the time zone 2 part location
+app.get('/getTimeZone/:area/:location', function(req, res) {
   var time = require('time')
   var now = new time.Date()
-  var tzone = timeZone(req.params.area,req.params.city)
+  var tzone = timeZone(req.params.area,req.params.location)
   if (tzone instanceof Error) {
     res.send(etzone)
   } else {
@@ -39,11 +60,25 @@ app.get('/getTimeZone/:area/:city', function(req, res) {
   }
 });
 
-// call for getting the time zone
-app.get('/getTimeOffset/:area/:city', function(req, res) {
+// call for getting the time zone 3 part location
+app.get('/getTimeZone/:area/:location/:city', function(req, res) {
   var time = require('time')
   var now = new time.Date()
-  var tzone = timeZone(req.params.area,req.params.city)
+  var tzone = timeZone(req.params.area,req.params.location,req.params.city)
+  if (tzone instanceof Error) {
+    res.send(etzone)
+  } else {
+    now.setTimezone(tzone)
+    var resultTimeZone=now.toString().split(" ")[6]
+    res.send(resultTimeZone.replace('(','').replace(')',''));
+  }
+});
+
+// call for getting the time zone 2 part location
+app.get('/getTimeOffset/:area/:location', function(req, res) {
+  var time = require('time')
+  var now = new time.Date()
+  var tzone = timeZone(req.params.area,req.params.location)
   if (tzone instanceof Error) {
     res.send(etzone)
   } else {
@@ -53,11 +88,39 @@ app.get('/getTimeOffset/:area/:city', function(req, res) {
   }
 });
 
-// Call for getting the adjusted time back
-app.get('/getTimeRaw/:area/:city', function(req, res) {
+// call for getting the time zone 3 part location
+app.get('/getTimeOffset/:area/:location/:city', function(req, res) {
   var time = require('time')
   var now = new time.Date()
-  var tzone = timeZone(req.params.area,req.params.city)
+  var tzone = timeZone(req.params.area,req.params.location,req.params.city)
+  if (tzone instanceof Error) {
+    res.send(etzone)
+  } else {
+    now.setTimezone(tzone)
+    var resultTimeZone=now.toString().split(" ")[5]
+    res.send(resultTimeZone);
+  }
+});
+
+// Call for getting the adjusted time back 2 part location
+app.get('/getTimeRaw/:area/:location', function(req, res) {
+  var time = require('time')
+  var now = new time.Date()
+  var tzone = timeZone(req.params.area,req.params.location)
+  if (tzone instanceof Error) {
+    res.send(etzone)
+  } else {
+    now.setTimezone(tzone)
+    var resultTime=now.toString();
+    res.send(resultTime);
+  }
+});
+
+// Call for getting the adjusted time back 2 part location
+app.get('/getTimeRaw/:area/:location/:city', function(req, res) {
+  var time = require('time')
+  var now = new time.Date()
+  var tzone = timeZone(req.params.area,req.params.location,req.params.city)
   if (tzone instanceof Error) {
     res.send(etzone)
   } else {
