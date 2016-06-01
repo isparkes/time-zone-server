@@ -21,6 +21,7 @@ var timeZone = function(area,location,city) {
 // Call for getting the adjusted time back 2 part location
 app.get('/getTime/:area/:location', function(req, res) {
   "use strict";
+  logClientID(req);
   let time = require('time');
   let now = new time.Date();
   let tzone = timeZone(req.params.area,req.params.location);
@@ -36,6 +37,7 @@ app.get('/getTime/:area/:location', function(req, res) {
 // Call for getting the adjusted time back 3 part location
 app.get('/getTime/:area/:location/:city', function(req, res) {
   "use strict";
+  logClientID(req);
   let now = new time.Date();
   let tzone = timeZone(req.params.area,req.params.location,req.params.city);
   if (tzone instanceof Error) {
@@ -50,6 +52,7 @@ app.get('/getTime/:area/:location/:city', function(req, res) {
 // call for getting the time zone 2 part location
 app.get('/getTimeZone/:area/:location', function(req, res) {
   "use strict";
+  logClientID(req);
   let now = new time.Date()
   let tzone = timeZone(req.params.area,req.params.location)
   if (tzone instanceof Error) {
@@ -64,6 +67,7 @@ app.get('/getTimeZone/:area/:location', function(req, res) {
 // call for getting the time zone 3 part location
 app.get('/getTimeZone/:area/:location/:city', function(req, res) {
   "use strict";
+  logClientID(req);
   let now = new time.Date()
   let tzone = timeZone(req.params.area,req.params.location,req.params.city)
   if (tzone instanceof Error) {
@@ -78,6 +82,7 @@ app.get('/getTimeZone/:area/:location/:city', function(req, res) {
 // call for getting the time zone 2 part location
 app.get('/getTimeOffset/:area/:location', function(req, res) {
   "use strict";
+  logClientID(req);
   let now = new time.Date()
   let tzone = timeZone(req.params.area,req.params.location)
   if (tzone instanceof Error) {
@@ -92,6 +97,7 @@ app.get('/getTimeOffset/:area/:location', function(req, res) {
 // call for getting the time zone 3 part location
 app.get('/getTimeOffset/:area/:location/:city', function(req, res) {
   "use strict";
+  logClientID(req);
   let now = new time.Date()
   let tzone = timeZone(req.params.area,req.params.location,req.params.city)
   if (tzone instanceof Error) {
@@ -106,6 +112,7 @@ app.get('/getTimeOffset/:area/:location/:city', function(req, res) {
 // Call for getting the adjusted time back 2 part location
 app.get('/getTimeRaw/:area/:location', function(req, res) {
   "use strict";
+  logClientID(req);
   let now = new time.Date()
   let tzone = timeZone(req.params.area,req.params.location)
   if (tzone instanceof Error) {
@@ -120,6 +127,7 @@ app.get('/getTimeRaw/:area/:location', function(req, res) {
 // Call for getting the adjusted time back 2 part location
 app.get('/getTimeRaw/:area/:location/:city', function(req, res) {
   "use strict";
+  logClientID(req);
   let now = new time.Date()
   let tzone = timeZone(req.params.area,req.params.location,req.params.city)
   if (tzone instanceof Error) {
@@ -130,6 +138,10 @@ app.get('/getTimeRaw/:area/:location/:city', function(req, res) {
     res.send(resultTime);
   }
 });
+
+function logClientID(request) {
+  console.log('Client: ' + request.headers.clientid + ' --> ' + request.headers.esp);
+}
 
 app.listen(port);
 console.log('Listening on port '+port+'...');
