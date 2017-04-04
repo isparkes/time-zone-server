@@ -65,4 +65,5 @@ Create the zip file from the root of the repository you cloned:
 
 Push the service
 
-    cf push time-zone-server -b nodejs_buildpack -m 256m -p time-zone-service.zip -i 1 -c "node time-zone-service.js"
+    cf target -s "Bots"
+    cf push time-zone-server -b nodejs_buildpack -m 64m -p time-zone-service.zip -i 2 -c "node time-zone-service.js"
