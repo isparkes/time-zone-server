@@ -1,3 +1,5 @@
+/* global etzone */
+
 var express = require('express');
 var app = express();
 var time = require('time');
@@ -5,18 +7,18 @@ var time = require('time');
 var port = process.env.PORT || 3000;
 
 var timeZone = function(area,location,city) {
-  if (area==null) {
+  if (area===null) {
     return new Error("Area can't be empty");
   }
-  if (location==null) {
+  if (location===null) {
     return new Error("Location can't be empty");
   }
-  if (city==null) {
+  if (city===null) {
     return area+'/'+location;
   } else {
     return area+'/'+location+'/'+city;
   }
-}
+};
 
 // Call for getting the adjusted time back 2 part location
 app.get('/getTime/:area/:location', function(req, res) {
@@ -53,13 +55,13 @@ app.get('/getTime/:area/:location/:city', function(req, res) {
 app.get('/getTimeZone/:area/:location', function(req, res) {
   "use strict";
   logClientID(req);
-  let now = new time.Date()
-  let tzone = timeZone(req.params.area,req.params.location)
+  let now = new time.Date();
+  let tzone = timeZone(req.params.area,req.params.location);
   if (tzone instanceof Error) {
-    res.send(etzone)
+    res.send(etzone);
   } else {
-    now.setTimezone(tzone)
-    var resultTimeZone=now.toString().split(" ")[6]
+    now.setTimezone(tzone);
+    var resultTimeZone=now.toString().split(" ")[6];
     res.send(resultTimeZone.replace('(','').replace(')',''));
   }
 });
@@ -68,13 +70,13 @@ app.get('/getTimeZone/:area/:location', function(req, res) {
 app.get('/getTimeZone/:area/:location/:city', function(req, res) {
   "use strict";
   logClientID(req);
-  let now = new time.Date()
-  let tzone = timeZone(req.params.area,req.params.location,req.params.city)
+  let now = new time.Date();
+  let tzone = timeZone(req.params.area,req.params.location,req.params.city);
   if (tzone instanceof Error) {
-    res.send(etzone)
+    res.send(etzone);
   } else {
-    now.setTimezone(tzone)
-    var resultTimeZone=now.toString().split(" ")[6]
+    now.setTimezone(tzone);
+    var resultTimeZone=now.toString().split(" ")[6];
     res.send(resultTimeZone.replace('(','').replace(')',''));
   }
 });
@@ -83,13 +85,13 @@ app.get('/getTimeZone/:area/:location/:city', function(req, res) {
 app.get('/getTimeOffset/:area/:location', function(req, res) {
   "use strict";
   logClientID(req);
-  let now = new time.Date()
-  let tzone = timeZone(req.params.area,req.params.location)
+  let now = new time.Date();
+  let tzone = timeZone(req.params.area,req.params.location);
   if (tzone instanceof Error) {
-    res.send(etzone)
+    res.send(etzone);
   } else {
-    now.setTimezone(tzone)
-    var resultTimeZone=now.toString().split(" ")[5]
+    now.setTimezone(tzone);
+    var resultTimeZone=now.toString().split(" ")[5];
     res.send(resultTimeZone);
   }
 });
@@ -98,13 +100,13 @@ app.get('/getTimeOffset/:area/:location', function(req, res) {
 app.get('/getTimeOffset/:area/:location/:city', function(req, res) {
   "use strict";
   logClientID(req);
-  let now = new time.Date()
-  let tzone = timeZone(req.params.area,req.params.location,req.params.city)
+  let now = new time.Date();
+  let tzone = timeZone(req.params.area,req.params.location,req.params.city);
   if (tzone instanceof Error) {
-    res.send(etzone)
+    res.send(etzone);
   } else {
-    now.setTimezone(tzone)
-    var resultTimeZone=now.toString().split(" ")[5]
+    now.setTimezone(tzone);
+    var resultTimeZone=now.toString().split(" ")[5];
     res.send(resultTimeZone);
   }
 });
@@ -113,12 +115,12 @@ app.get('/getTimeOffset/:area/:location/:city', function(req, res) {
 app.get('/getTimeRaw/:area/:location', function(req, res) {
   "use strict";
   logClientID(req);
-  let now = new time.Date()
-  let tzone = timeZone(req.params.area,req.params.location)
+  let now = new time.Date();
+  let tzone = timeZone(req.params.area,req.params.location);
   if (tzone instanceof Error) {
-    res.send(etzone)
+    res.send(etzone);
   } else {
-    now.setTimezone(tzone)
+    now.setTimezone(tzone);
     var resultTime=now.toString();
     res.send(resultTime);
   }
@@ -128,12 +130,12 @@ app.get('/getTimeRaw/:area/:location', function(req, res) {
 app.get('/getTimeRaw/:area/:location/:city', function(req, res) {
   "use strict";
   logClientID(req);
-  let now = new time.Date()
-  let tzone = timeZone(req.params.area,req.params.location,req.params.city)
+  let now = new time.Date();
+  let tzone = timeZone(req.params.area,req.params.location,req.params.city);
   if (tzone instanceof Error) {
-    res.send(etzone)
+    res.send(etzone);
   } else {
-    now.setTimezone(tzone)
+    now.setTimezone(tzone);
     var resultTime=now.toString();
     res.send(resultTime);
   }
