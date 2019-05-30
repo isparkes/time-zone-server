@@ -63,7 +63,11 @@ Create the zip file from the root of the repository you cloned:
 
     zip -r time-zone-service.zip *
 
+Login to cloud foundry (for example on Swisscom, where I host mine)
+
+    cf login -a https://api.lyra-836.appcloud.swisscom.com -u <your_user_name>
+
 Push the service
 
-    cf target -s "Bots"
+    cf target -o Nixie -s Nixie
     cf push time-zone-server -b nodejs_buildpack -m 64m -p time-zone-service.zip -i 2 -c "node time-zone-service.js"
