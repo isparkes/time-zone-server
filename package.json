@@ -4,7 +4,8 @@
   "description": "Provides local time and time zone information via REST, given a TZ like input",
   "main": "time-zone-service.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node time-zone-service.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,6 @@
     "time": "^0.11.4"
   },
   "engines": {
-    "node": "8.15.1"
+    "node": "10.15.0"
   }
 }

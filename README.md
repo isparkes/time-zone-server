@@ -45,7 +45,7 @@ Returns the internal date representation, intended for debugging only
     Tue Apr 19 2016 09:47:30 GMT+0200 (CEST)
 
 
-#Running on a local server
+# Running on a local server
 Install Node.js, there are a lot of references about how to do this. Google it.
 
 Get/build the dependencies
@@ -56,7 +56,7 @@ Execute
 
     node time-zone-service.js
 
-#Running on Cloud Foundry
+# Running on Cloud Foundry
 Even easier:
 
 Create the zip file from the root of the repository you cloned:
@@ -72,7 +72,7 @@ Push the service
     cf target -o Nixie -s Nixie
     cf push time-zone-server -b nodejs_buildpack -m 64m -p time-zone-service.zip -i 2 -c "node time-zone-service.js"
 
-#Running on a Raspberry Pi
+# Running on a Raspberry Pi
 
 The best node version to run with on the Raspberry is v6. This guide takes you through the process of installing node on the Rapsberry and running the server with that.
 
@@ -129,5 +129,15 @@ Now you should be able to detach and the time zone server will be available at p
 
 If you like, you can also do some port forwarding and make the service available to the outside world. If you do this, it would be nice if you let me know you are running a server so that others can use it as a back up option.
 
+# Docker image
+
+There is a Docker image defintion file "Dockerfile" and an associated .dockerignore file. You can build a Docker image like this:
+
+    docker build -t isparkes/time-zone-server:001 .
+    docker push isparkes/time-zone-server:001
+
+The image can be run like this:
+
+    docker run --name bc-pay-gw --link dbbcpgw -p 30044:3000 -e MONGO_URL=mongodb://dbbcpgw:27017/bcpgw -e LOCK_CARTS=true -d isparkes/bitcoin-payment-gw
 
 
