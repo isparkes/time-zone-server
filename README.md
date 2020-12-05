@@ -138,6 +138,6 @@ There is a Docker image defintion file "Dockerfile" and an associated .dockerign
 
 The image can be run like this:
 
-    docker run --name bc-pay-gw --link dbbcpgw -p 30044:3000 -e MONGO_URL=mongodb://dbbcpgw:27017/bcpgw -e LOCK_CARTS=true -d isparkes/bitcoin-payment-gw
+    docker run --name time-zone-server -p 3000:3000 isparkes/time-zone-server
 
 
